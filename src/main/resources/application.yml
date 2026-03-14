@@ -1,0 +1,32 @@
+# ==================== iShop 电商平台 主配置文件 ====================
+
+spring:
+  application:
+    name: ishop
+  config:
+    additional-location: classpath:config/
+  profiles:
+    include: product,order,user,cart,category
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shop
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+server:
+  port: 8080
+
+jwt:
+  secret: ishop-secret-key-2024-very-long-secret-key-for-jwt-token
+  expiration: 86400000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

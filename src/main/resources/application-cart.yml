@@ -1,0 +1,59 @@
+# ==================== 购物车模块配置 ====================
+# 
+# 模块说明：
+# - 提供购物车增删改查等接口
+# - 对应数据库表：cart_items
+# - 存储过程前缀：sp_add_, fn_get_, sp_clear_
+#
+# 业务规则：
+# - 同一用户对同一商品，累加数量
+# - 购物车与用户绑定
+#
+# API路由：
+# - POST /api/cart/add           - 添加商品到购物车
+# - GET /api/cart/user/{userId}  - 获取购物车列表
+# - DELETE /api/cart/user/{userId} - 清空购物车
+
+# API路由配置
+api:
+  routes:
+    # 添加到购物车
+    - path: /api/cart/add
+      procedure: add_to_cart
+      method: POST
+      module: cart
+      description: "添加商品到购物车"
+    
+    # 获取购物车列表
+    - path: /api/cart/user/{userId}
+      procedure: get_user_cart
+      method: GET
+      module: cart
+      description: "获取购物车列表"
+    
+    # 清空购物车
+    - path: /api/cart/user/{userId}
+      procedure: clear_cart
+      method: DELETE
+      module: cart
+      description: "清空购物车"
+
+# 存储过程SQL映射
+procedures:
+  # 添加到购物车（存储过程）
+  add_to_cart:
+    module: cart
+    sql: "CALL sp_add_to_cart(?, ?, ?)"
+    description: "添加到购物车"
+  
+  # 获取购物车列表
+  get_user_cart:
+    module: cart
+    sql: "SELECT * FROM fn_get_user_cart(?)"
+    description: "获取购物车列表"
+  
+  # 清空购物车（存储过程）
+  clear_cart:
+    module: cart
+    sql: "CALL sp_clear_cart(?)"
+    description: "清空购物车"

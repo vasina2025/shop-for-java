@@ -1,0 +1,55 @@
+# ==================== 订单模块配置 ====================
+# 
+# 模块说明：
+# - 提供订单创建、查询等接口
+# - 对应数据库表：orders, order_items
+# - 存储过程前缀：fn_create_, fn_get_order_, fn_get_user_
+#
+# API路由：
+# - POST /api/order/create     - 创建订单
+# - GET /api/order/{id}       - 获取订单详情
+# - GET /api/order/user/{userId} - 获取用户订单列表
+
+# API路由配置
+api:
+  routes:
+    # 创建订单
+    - path: /api/order/create
+      procedure: create_order
+      method: POST
+      module: order
+      description: "创建订单"
+    
+    # 获取订单详情
+    - path: /api/order/{id}
+      procedure: get_order_by_id
+      method: GET
+      module: order
+      description: "获取订单详情"
+    
+    # 获取用户订单列表
+    - path: /api/order/user/{userId}
+      procedure: get_user_orders
+      method: GET
+      module: order
+      description: "获取用户订单列表"
+
+# 存储过程SQL映射
+procedures:
+  # 创建订单
+  create_order:
+    module: order
+    sql: "SELECT * FROM fn_create_order(?, ?, ?)"
+    description: "创建订单"
+  
+  # 根据ID获取订单
+  get_order_by_id:
+    module: order
+    sql: "SELECT * FROM fn_get_order_by_id(?)"
+    description: "根据ID获取订单"
+  
+  # 获取用户订单列表
+  get_user_orders:
+    module: order
+    sql: "SELECT * FROM fn_get_user_orders(?, ?, ?)"
+    description: "获取用户订单列表"

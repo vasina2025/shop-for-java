@@ -1,0 +1,25 @@
+# ==================== 用户模块配置 ====================
+# 模块说明：提供用户登录、注册、信息查询等接口
+
+api:
+  routes:
+    - path: /api/user/login
+      procedure: user_login
+      method: POST
+      module: user
+    - path: /api/user/register
+      procedure: register_user
+      method: POST
+      module: user
+    - path: /api/user/{id}
+      procedure: get_user_by_id
+      method: GET
+      module: user
+
+procedures:
+  user_login:
+    sql: "SELECT * FROM fn_user_login(?, ?)"
+  register_user:
+    sql: "SELECT * FROM fn_register_user(?, ?, ?, ?)"
+  get_user_by_id:
+    sql: "SELECT * FROM fn_get_user_by_id(?)"
