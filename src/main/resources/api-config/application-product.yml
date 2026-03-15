@@ -1,20 +1,16 @@
-# ==================== 商品模块配置 ====================
-# 模块说明：提供商品列表、详情、搜索等接口
+# 商品模块配置
 
 api:
   routes:
     - path: /api/product/list
       procedure: get_product_list
       method: GET
-      module: product
     - path: /api/product/{id}
       procedure: get_product_by_id
       method: GET
-      module: product
     - path: /api/product/search
       procedure: search_products
       method: GET
-      module: product
 
 procedures:
   get_product_list:

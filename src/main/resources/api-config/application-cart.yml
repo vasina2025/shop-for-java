@@ -1,21 +1,16 @@
-# ==================== 购物车模块配置 ====================
-# 模块说明：提供购物车增删改查等接口
+# 购物车模块配置
 
 api:
   routes:
     - path: /api/cart/add
       procedure: add_to_cart
       method: POST
-      module: cart
     - path: /api/cart/user/{userId}
       procedure: get_user_cart
       method: GET
-      module: cart
 
 procedures:
   add_to_cart:
     sql: "CALL sp_add_to_cart(?, ?, ?)"
   get_user_cart:
     sql: "SELECT * FROM fn_get_user_cart(?)"
-  clear_cart:
-    sql: "CALL sp_clear_cart(?)"

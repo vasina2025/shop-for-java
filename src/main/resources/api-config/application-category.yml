@@ -1,16 +1,13 @@
-# ==================== 分类模块配置 ====================
-# 模块说明：提供分类查询等接口
+# 分类模块配置
 
 api:
   routes:
     - path: /api/category/tree
       procedure: get_category_tree
       method: GET
-      module: category
     - path: /api/category/{id}/products
       procedure: get_category_products
       method: GET
-      module: category
 
 procedures:
   get_category_tree:

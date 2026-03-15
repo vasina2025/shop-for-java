@@ -1,20 +1,19 @@
-# ==================== 用户模块配置 ====================
-# 模块说明：提供用户登录、注册、信息查询等接口
+# 用户模块配置
 
 api:
   routes:
     - path: /api/user/login
       procedure: user_login
       method: POST
-      module: user
     - path: /api/user/register
       procedure: register_user
       method: POST
-      module: user
     - path: /api/user/{id}
       procedure: get_user_by_id
       method: GET
-      module: user
+    - path: /api/user/info
+      procedure: get_user_by_id
+      method: GET
 
 procedures:
   user_login:

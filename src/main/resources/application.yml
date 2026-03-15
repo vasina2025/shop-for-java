@@ -4,7 +4,7 @@ spring:
   application:
     name: ishop
   config:
-    additional-location: classpath:config/
+    additional-location: classpath:api-config/
   profiles:
     include: product,order,user,cart,category
 

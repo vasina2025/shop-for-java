@@ -1,20 +1,16 @@
-# ==================== 订单模块配置 ====================
-# 模块说明：提供订单创建、查询等接口
+# 订单模块配置
 
 api:
   routes:
     - path: /api/order/create
       procedure: create_order
       method: POST
-      module: order
     - path: /api/order/{id}
       procedure: get_order_by_id
       method: GET
-      module: order
     - path: /api/order/user/{userId}
       procedure: get_user_orders
       method: GET
-      module: order
 
 procedures:
   create_order:
